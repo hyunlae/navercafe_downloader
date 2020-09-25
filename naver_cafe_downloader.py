@@ -49,7 +49,8 @@ def get_contents(club_id: int, article_no: int, dir_name=None):
 
     if len(_contentElements) > 0:
 
-        _content_dir = dir_name + "/" + (str(article_no) + "_" + _subject).strip()
+        # _content_dir = dir_name + "/" + (str(article_no) + "_" + _subject).strip()
+        _content_dir = dir_name + "/" + (str(article_no)).strip()
         _create_dir(_content_dir)
 
         for idx, el in enumerate(_contentElements):
@@ -61,13 +62,38 @@ def get_contents(club_id: int, article_no: int, dir_name=None):
                 https://cafeptthumb-phinf.pstatic.net 의 이미지경로는 썸네일이어서 파일 사이즈가 작아짐.
                 따라서, https://cafefiles.pstatic.net의 경로로 다시 가져옴.
                 '''
-                _image_url = _image_url.replace('https://cafeptthumb-phinf.pstatic.net',
-                                                'https://cafefiles.pstatic.net')
 
-                urllib.request.urlretrieve(_image_url, _content_dir + "/" + str(
-                    article_no) + "_image_" + str(idx) + ".jpg")
+                # _image_url = _image_url.replace('https://cafeptthumb-phinf.pstatic.net',
+                #                                 'https://cafefiles.pstatic.net')
 
-                max_image_count = max_image_count + 1
+                try:
+
+                    if 'https://dthumb-phinf.pstatic.net' in _image_url:
+
+                        _ps = urllib.parse.parse_qs(_image_url)
+                        # print(_ps.keys())
+                        _keys = _ps.keys()
+
+                        for _k in _keys:
+
+                            _iu = _ps[_k][0]
+                            _iu = _iu.replace('"', '')
+                            # print(_iu)
+                            urllib.request.urlretrieve(_iu, _content_dir + "/" + str(
+                                article_no) + "_image_" + str(idx) + ".jpg")
+                        # _t = _image_url.split('?')
+                        # _src = _t[1].split('=')
+                        # urllib.request.urlretrieve(_src[1], _content_dir + "/" + str(
+                        #     article_no) + "_image_" + str(idx) + ".jpg")
+
+                    else:
+                        print('img_url: ' + _image_url)
+                        urllib.request.urlretrieve(_image_url, _content_dir + "/" + str(
+                            article_no) + "_image_" + str(idx) + ".jpg")
+
+                    max_image_count = max_image_count + 1
+                except urllib.error.HTTPError:
+                    print('not found')
 
             if el['type'] == 'MOVIE':
 

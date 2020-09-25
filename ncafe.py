@@ -9,7 +9,7 @@ def get_next_sunday():
     today = datetime.datetime.today()
     diff = (6 - today.weekday()) % 7
     last_sun = today + datetime.timedelta(days=diff)
-    return last_sun.strftime("%Y%m%d")
+    return last_sun.strftime("%Y.%m.%d")
 
 
 _next_sun_str = get_next_sunday()
@@ -28,4 +28,6 @@ def cli(club_id, articles, dir):
 
 
 if __name__ == '__main__':
+
+
     cli()
