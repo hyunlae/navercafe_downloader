@@ -8,7 +8,7 @@ setup(
     license='free',
     author='hyunlae',
     author_email='gusfot@gmail.com',
-    description='ncafe_downloader'
+    description='ncafe downloader'
     install_requires=[
         'certifi==2020.6.20',
         'chardet==3.0.4',
