@@ -19,7 +19,7 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        ncafe=navercafe_downloader.script.ncafe:cli
+        ncafe=ncafe:cli
     ''',
 
 )
