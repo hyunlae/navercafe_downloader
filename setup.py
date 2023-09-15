@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='ncafe_downloader',
     version='1.1',
-    packages=[],
+    packages=find_packages(),
     url='https://github.com/gusfot',
     license='free',
     author='hyunlae',
