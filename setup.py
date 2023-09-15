@@ -19,7 +19,7 @@ setup(
     ],
     entry_points={
     'console_scripts': [
-        'ncafe = ncafe:main',
+        'ncafe = ncafe:cli',
     ],
     },
 )
