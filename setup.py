@@ -17,9 +17,9 @@ setup(
         'requests==2.26',
         'urllib3==1.26'
     ],
-    entry_points='''
-        [console_scripts]
-        ncafe=ncafe:cli
-    ''',
-
+    entry_points={
+        'console_scripts': [
+            'ncafe=ncafe:cli',
+        ],
+    },
 )
