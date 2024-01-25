@@ -1,7 +1,5 @@
 import datetime
-
 import click
-
 from naver_cafe.naver_cafe_downloader import get_contents
 
 
