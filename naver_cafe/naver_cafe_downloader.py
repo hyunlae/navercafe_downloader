@@ -20,12 +20,13 @@ def _get_request_html(req_url):
     # return BeautifulSoup(html, 'html.parser')
 
 
-def _create_dir(dirPath):
+def _create_dir(dir_path: str):
     try:
-        if not os.path.exists(dirPath):
-            os.makedirs(dirPath)
+        if not os.path.exists(dir_path):
+            os.makedirs(dir_path)
+        print(f"dir:  {dir_path} created")
     except OSError:
-        print('Error: Create directory.' + dirPath)
+        print('Error: Create directory.' + dir_path)
 
 
 def get_contents(club_id: int, article_no: int, dir_name=None):
