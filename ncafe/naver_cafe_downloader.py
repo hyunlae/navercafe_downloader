@@ -1,4 +1,3 @@
-import datetime
 import json
 import logging
 import os
@@ -68,6 +67,8 @@ def get_contents(club_id: int, article_no: int, dir_name=None):
 
                 try:
 
+                    img_name = str(article_no) + "_image_" + str(idx) + ".jpg"
+                    img_full_name = _content_dir + "/" + img_name
                     if 'https://dthumb-phinf.pstatic.net' in _image_url:
 
                         _ps = urllib.parse.parse_qs(_image_url)
@@ -75,21 +76,15 @@ def get_contents(club_id: int, article_no: int, dir_name=None):
                         _keys = _ps.keys()
 
                         for _k in _keys:
-
                             _iu = _ps[_k][0]
                             _iu = _iu.replace('"', '')
                             # print(_iu)
-                            urllib.request.urlretrieve(_iu, _content_dir + "/" + str(
-                                article_no) + "_image_" + str(idx) + ".jpg")
-                        # _t = _image_url.split('?')
-                        # _src = _t[1].split('=')
-                        # urllib.request.urlretrieve(_src[1], _content_dir + "/" + str(
-                        #     article_no) + "_image_" + str(idx) + ".jpg")
+
+                            download_image(_iu, img_full_name)
 
                     else:
                         print('img_url: ' + _image_url)
-                        urllib.request.urlretrieve(_image_url, _content_dir + "/" + str(
-                            article_no) + "_image_" + str(idx) + ".jpg")
+                        download_image(_image_url, img_full_name)
 
                     max_image_count = max_image_count + 1
                 except urllib.error.HTTPError:
@@ -111,11 +106,31 @@ def get_contents(club_id: int, article_no: int, dir_name=None):
 
                     for _idx, video in enumerate(_video_list):
                         _video_url = video['source']
-
-                        urllib.request.urlretrieve(_video_url,
-                                                   _content_dir + "/" + str(article_no) + "_video_" + str(
-                                                       idx) + ".mp4")
+                        video_name = str(article_no) + "_video_" + str(_idx) + ".mp4"
+                        video_full_name = _content_dir + "/" + video_name
+                        download_image(url=_video_url, file_path=video_full_name)
                 max_video_count = max_video_count + 1
 
         print('게시글(' + str(article_no) + ')의 ' + '이미지:' + str(max_image_count) + '개, ' + '동영상:' + str(
             max_video_count) + '개를 저장하였습니다.')
+
+
+def download_image(url: str, file_path: str):
+    # urllib.request.urlretrieve(url, file_path)
+    # headers = {
+    #     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+    # url = 'https://markinternational.info/data/out/366/221983609-black-hd-desktop-wallpaper.jpg'
+    # res = requests.get(url, headers=headers)
+    # with open(file_path, 'wb') as W:
+    #     W.write(res.content)
+
+    req = urllib.request.Request(
+        url,
+        data=None,
+        headers={
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+        }
+    )
+
+    with open(file_path, 'wb') as img_file:
+        img_file.write(urllib.request.urlopen(req).read())
