@@ -8,7 +8,7 @@ setup(
     license='free',
     author='hyunlae',
     author_email='gusfot@gmail.com',
-    description='ncafe downloader',
+    description='naver_cafe downloader',
     install_requires=[
         'certifi==2020.6.20',
         'chardet==3.0.4',
@@ -19,7 +19,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'ncafe=ncafe:cli',
+            'naver_cafe=naver_cafe.ncafe:cli',
         ],
     },
 )
