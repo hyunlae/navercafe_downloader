@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import random
+import sys
 import time
 import urllib
 
@@ -30,7 +31,8 @@ def _create_dir(dirPath):
 def get_contents(club_id: int, article_no: int, dir_name=None):
     time.sleep(random.choice(r_times))
 
-    _create_dir(dir_name)
+    project_root_dir = sys.path[1]
+    _create_dir(project_root_dir + "/" + dir_name)
 
     article_api_url = 'https://apis.naver.com/cafe-web/cafe-articleapi/cafes/' + str(club_id) + '/articles/' + str(
         article_no) + '?query=&boardType=L&useCafeId=true&requestFrom=A'

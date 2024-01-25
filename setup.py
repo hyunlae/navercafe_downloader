@@ -19,7 +19,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'ncafe=naver_cafe.ncafe',
+            'ncafe=naver_cafe.ncafe:cli',
         ],
     },
 )

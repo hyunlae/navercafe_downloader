@@ -2,7 +2,7 @@ import datetime
 
 import click
 
-from naver_cafe.naver_cafe_downloader import get_contents
+from naver_cafe_downloader import get_contents
 
 
 def get_next_sunday():
@@ -28,6 +28,4 @@ def cli(club_id, articles, dir):
 
 
 if __name__ == '__main__':
-
-
     cli()
