@@ -29,11 +29,8 @@ def _create_dir(dir_path: str):
         print('Error: Create directory.' + dir_path)
 
 
-def get_contents(club_id: int, article_no: int, dir_name=None):
+def get_contents(club_id: int, article_no: int, dir_name="Downloads"):
     time.sleep(random.choice(r_times))
-
-    project_root_dir = sys.path[1]
-    _create_dir(project_root_dir + "/" + dir_name)
 
     article_api_url = 'https://apis.naver.com/cafe-web/cafe-articleapi/cafes/' + str(club_id) + '/articles/' + str(
         article_no) + '?query=&boardType=L&useCafeId=true&requestFrom=A'
