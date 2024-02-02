@@ -22,7 +22,7 @@ _club_id = 30012903
 @click.option('-d', '--dir', default=_next_sun_str, required=False, help='디렉토리명')
 def cli(club_id, articles, dir):
     """네이버카페에서 게시된 글의 컨텐츠(이미지, 동영상)을 다운받기."""
-    user_home = os.getenv("USERPROFILE")
+    user_home = os.path.expanduser('~')
     _create_dir(user_home + "/Downloads/" + dir)
 
     for _article in articles:
