@@ -23,10 +23,11 @@ _club_id = 30012903
 def cli(club_id, articles, dir):
     """네이버카페에서 게시된 글의 컨텐츠(이미지, 동영상)을 다운받기."""
     user_home = os.path.expanduser('~')
-    _create_dir(user_home + "/Downloads/" + dir)
+    save_dir = user_home + "/Downloads/" + dir
+    _create_dir(save_dir)
 
     for _article in articles:
-        get_contents(club_id, _article, dir)
+        get_contents(club_id, _article, save_dir)
 
 
 if __name__ == '__main__':
