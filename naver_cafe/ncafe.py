@@ -1,6 +1,8 @@
 import datetime
+import os
+
 import click
-from naver_cafe.naver_cafe_downloader import get_contents
+from naver_cafe.naver_cafe_downloader import get_contents, _create_dir
 
 
 def get_next_sunday():
@@ -21,7 +23,7 @@ _club_id = 30012903
 def cli(club_id, articles, dir):
     """네이버카페에서 게시된 글의 컨텐츠(이미지, 동영상)을 다운받기."""
     user_home = os.getenv("USERPROFILE")
-    _create_dir(user_home + "/" + dir_name)
+    _create_dir(user_home + "/Downloads/" + dir)
 
     for _article in articles:
         get_contents(club_id, _article, dir)
