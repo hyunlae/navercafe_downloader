@@ -16,7 +16,7 @@ setup(
         'idna==2.10',
         'requests==2.31.0',
         'urllib3==1.26',
-        "beautifulsoup4==2.31.0"
+        "beautifulsoup4==4.12.3"
     ],
     entry_points={
         'console_scripts': [
