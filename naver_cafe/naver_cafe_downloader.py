@@ -110,7 +110,7 @@ def get_contents(club_id: int, article_no: int, dir_name="Downloads"):
             video_name = f"{article_no}_video_{_idx}.mp4"
             video_full_name = _content_dir + "/" + video_name
             download_image(url=_video_url, file_path=video_full_name)
-        max_video_count += 1
+            max_video_count += 1
 
     if len(image_list) > 0:
         for _idx, image in enumerate(image_list):
@@ -118,6 +118,7 @@ def get_contents(club_id: int, article_no: int, dir_name="Downloads"):
             img_name = f"{article_no}_image_{_idx}.jpg"
             img_full_name = _content_dir + "/" + img_name
             download_image(url=_image_url, file_path=img_full_name)
+            max_image_count += 1
 
     print(f'게시글({article_no})의 이미지: {max_image_count}개, 동영상: {max_video_count}개를 저장하였습니다.')
 
