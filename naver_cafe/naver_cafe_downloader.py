@@ -45,6 +45,9 @@ def get_contents(club_id: int, article_no: int, dir_name="Downloads"):
     max_image_count = 0
     max_video_count = 0
 
+    if 'article' not in _result:
+        print("article not in _result")
+        return
     _contentElements = _result['article']['contentElements']
     _subject = _result['article']['subject']
 
