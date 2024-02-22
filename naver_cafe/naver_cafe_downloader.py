@@ -21,8 +21,8 @@ def _get_request_html(req_url):
         timeout=60,
         headers={
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) "
-                          "AppleWebKit/537.36 (KHTML, like Gecko) "
-                          "Chrome/35.0.1916.47 Safari/537.36"
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/35.0.1916.47 Safari/537.36"
         },
     ).text
     return html
@@ -41,9 +41,11 @@ def _create_dir(dir_path: str):
 def get_contents(club_id: int, article_no: int, dir_name="Downloads"):
     time.sleep(random.choice(r_times))
 
-    article_api_url = (f"https://apis.naver.com/cafe-web/cafe-articleapi/cafes/"
-                       f"{club_id}/articles/{article_no}?"
-                       f"query=&boardType=L&useCafeId=true&requestFrom=A")
+    article_api_url = (
+        f"https://apis.naver.com/cafe-web/cafe-articleapi/cafes/"
+        f"{club_id}/articles/{article_no}?"
+        f"query=&boardType=L&useCafeId=true&requestFrom=A"
+    )
 
     _result_text = _get_request_html(article_api_url)
 
@@ -131,26 +133,28 @@ def get_contents(club_id: int, article_no: int, dir_name="Downloads"):
 
 
 def _get_video_list(vid, in_key):
-    _video_api_url = (f"https://apis.naver.com/rmcnmv/rmcnmv/vod/play/v2.0/{vid}?"
-                      f"key={in_key}&pid=rmcPlayer_15933305076787687&sid=5&ver=2.0&"
-                      f"devt=html5_pc&doct=json&ptc=https&sptc=https&cpt=vtt&"
-                      f"ctls=%7B%22visible%22%3A%7B%22fullscreen%22%3Atrue%2C%22logo"
-                      f"%22%3Afalse%2C%22playbackRate%22"
-                      f"%3Afalse%2C%22scrap%22%3Afalse%2C%22playCount%22%3Atrue%2C"
-                      f"%22commentCount%22%3Atrue%2C"
-                      f"%22title%22%3Atrue%2C%22writer%22%3Afalse%2C%22expand"
-                      f"%22%3Afalse%2C%22subtitles%22%3Atrue%2C"
-                      f"%22thumbnails%22%3Atrue%2C%22quality%22%3Atrue%2C%22setting"
-                      f"%22%3Atrue%2C%22script%22%3Afalse"
-                      f"%2C%22logoDimmed%22%3Atrue%2C%22badge%22%3Atrue%2C%22seekingTime"
-                      f"%22%3Atrue%2C%22muted%22"
-                      f"%3Atrue%2C%22muteButton%22%3Afalse%2C%22viewerNotice%22"
-                      f"%3Afalse%2C%22linkCount%22%3Atrue%2C"
-                      f"%22createTime%22%3Afalse%2C%22thumbnail%22%3Atrue%7D%2C"
-                      f"%22clicked%22%3A%7B%22expand%22"
-                      f"%3Afalse%2C%22subtitles%22%3Afalse%7D%7D&"
-                      f"pv=4.18.41&dr=1920x1080&lc=ko_KR&videoId"
-                      f"=D1CE2EB4D8DA6BE4F8CB5B6D9C178BE3077")
+    _video_api_url = (
+        f"https://apis.naver.com/rmcnmv/rmcnmv/vod/play/v2.0/{vid}?"
+        f"key={in_key}&pid=rmcPlayer_15933305076787687&sid=5&ver=2.0&"
+        f"devt=html5_pc&doct=json&ptc=https&sptc=https&cpt=vtt&"
+        f"ctls=%7B%22visible%22%3A%7B%22fullscreen%22%3Atrue%2C%22logo"
+        f"%22%3Afalse%2C%22playbackRate%22"
+        f"%3Afalse%2C%22scrap%22%3Afalse%2C%22playCount%22%3Atrue%2C"
+        f"%22commentCount%22%3Atrue%2C"
+        f"%22title%22%3Atrue%2C%22writer%22%3Afalse%2C%22expand"
+        f"%22%3Afalse%2C%22subtitles%22%3Atrue%2C"
+        f"%22thumbnails%22%3Atrue%2C%22quality%22%3Atrue%2C%22setting"
+        f"%22%3Atrue%2C%22script%22%3Afalse"
+        f"%2C%22logoDimmed%22%3Atrue%2C%22badge%22%3Atrue%2C%22seekingTime"
+        f"%22%3Atrue%2C%22muted%22"
+        f"%3Atrue%2C%22muteButton%22%3Afalse%2C%22viewerNotice%22"
+        f"%3Afalse%2C%22linkCount%22%3Atrue%2C"
+        f"%22createTime%22%3Afalse%2C%22thumbnail%22%3Atrue%7D%2C"
+        f"%22clicked%22%3A%7B%22expand%22"
+        f"%3Afalse%2C%22subtitles%22%3Afalse%7D%7D&"
+        f"pv=4.18.41&dr=1920x1080&lc=ko_KR&videoId"
+        f"=D1CE2EB4D8DA6BE4F8CB5B6D9C178BE3077"
+    )
     _video_soup = _get_request_html(_video_api_url)
     _video_result_text = _video_soup
     _video_api_result = json.loads(_video_result_text)
@@ -164,7 +168,7 @@ def download_image(url: str, file_path: str):
         data=None,
         headers={
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) "
-                          "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36"
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36"
         },
     )
 
